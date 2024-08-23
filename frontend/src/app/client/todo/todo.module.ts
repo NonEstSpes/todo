@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TodoComponent} from "./components/todo/todo.component";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 
 
@@ -8,11 +9,12 @@ import {TodoComponent} from "./components/todo/todo.component";
   declarations: [
     TodoComponent,
   ],
+  imports: [
+    CommonModule,
+    MatSlideToggleModule,
+  ],
   exports: [
     TodoComponent,
   ],
-  imports: [
-    CommonModule,
-  ]
 })
 export class TodoModule { }
