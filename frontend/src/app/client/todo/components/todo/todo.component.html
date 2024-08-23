@@ -21,6 +21,10 @@
       <mat-button-toggle value="Completed">Completed</mat-button-toggle>
     </mat-button-toggle-group>
 
+    <button mat-button (click)="listTodos.allCompleted()">All Completed</button>
+
+    <button mat-button (click)="listTodos.cleatCompleted()">Clear Completed</button>
+
     <div class="position__list-container">
       <div *ngFor="let todo of listTodos.todos">
         <div *ngIf="(typeFilter == 'Active' && !todo.state) ||
@@ -30,7 +34,8 @@
         >
           <mat-checkbox [(ngModel)]="todo.state">{{todo.name}}</mat-checkbox>
           <button mat-fab aria-label="Example icon button with a delete icon"
-                  (click)="listTodos.todos.splice(listTodos.todos.indexOf(todo, 0), 1)"
+                  (click)="listTodos.todos.splice(listTodos.todos.indexOf(todo, 0), 1);
+                  listTodos.count = listTodos.count - 1"
           >
             <mat-icon>delete</mat-icon>
           </button>

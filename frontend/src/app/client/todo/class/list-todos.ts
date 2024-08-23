@@ -10,10 +10,11 @@ export class ListTodos {
   }
 
   allCompleted(): void {
-
+    this.todos.forEach((todo: Todo) => todo.state = true)
   }
 
   cleatCompleted(): void {
-
+    this.todos = this.todos.filter( (todo: Todo) => !todo.state)
+    this.count = this.todos.length
   }
 }

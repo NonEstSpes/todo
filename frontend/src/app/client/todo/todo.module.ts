@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {FormsModule} from "@angular/forms";
 import {MatButtonToggle, MatButtonToggleGroup} from "@angular/material/button-toggle";
 import {MatCheckbox} from "@angular/material/checkbox";
+import {MatButton, MatFabButton} from "@angular/material/button";
 
 
 
@@ -23,6 +24,8 @@ import {MatCheckbox} from "@angular/material/checkbox";
     MatButtonToggleGroup,
     MatButtonToggle,
     MatCheckbox,
+    MatButton,
+    MatFabButton,
   ],
   exports: [
     TodoComponent,
