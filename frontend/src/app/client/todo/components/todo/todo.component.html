@@ -1,1 +1,44 @@
-<mat-slide-toggle>hello</mat-slide-toggle>
+<div class="position">
+  <mat-form-field>
+    <mat-label>What needs to be done?</mat-label>
+    <input
+      style="text-align: center;"
+      type="text"
+      matInput
+      placeholder="Placeholder"
+      [(ngModel)]="name"
+      (keyup.enter)="onEnter()"
+    >
+  </mat-form-field>
+
+  <div *ngIf="listTodos.count > 0">
+
+    <mat-hint align="end">{{listTodos.count}} items left</mat-hint>
+    <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" value="All"
+                             [(ngModel)]="typeFilter">
+      <mat-button-toggle value="All">All</mat-button-toggle>
+      <mat-button-toggle value="Active">Active</mat-button-toggle>
+      <mat-button-toggle value="Completed">Completed</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <div class="position__list-container">
+      <div *ngFor="let todo of listTodos.todos">
+        <div *ngIf="(typeFilter == 'Active' && !todo.state) ||
+                    (typeFilter == 'Completed' && todo.state) ||
+                    typeFilter == 'All'"
+             style="column-gap: 20px;"
+        >
+          <mat-checkbox [(ngModel)]="todo.state">{{todo.name}}</mat-checkbox>
+          <button mat-fab aria-label="Example icon button with a delete icon"
+                  (click)="listTodos.todos.splice(listTodos.todos.indexOf(todo, 0), 1)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {TodoComponent} from "./components/todo/todo.component";
-import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {FormsModule} from "@angular/forms";
+import {MatButtonToggle, MatButtonToggleGroup} from "@angular/material/button-toggle";
+import {MatCheckbox} from "@angular/material/checkbox";
 
 
 
@@ -11,7 +16,13 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
   ],
   imports: [
     CommonModule,
-    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    FormsModule,
+    MatButtonToggleGroup,
+    MatButtonToggle,
+    MatCheckbox,
   ],
   exports: [
     TodoComponent,
