@@ -8,6 +8,7 @@ import {ListTodos} from "../../class/list-todos";
   styleUrl: './todo.component.scss'
 })
 export class TodoComponent {
+  flag: boolean = true
   typeFilter: string = "All"
   name: string = ""
   listTodos: ListTodos = new ListTodos()

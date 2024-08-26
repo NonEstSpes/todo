@@ -32,7 +32,17 @@
                     typeFilter == 'All'"
              style="column-gap: 20px;"
         >
-          <mat-checkbox [(ngModel)]="todo.state">{{todo.name}}</mat-checkbox>
+          <mat-checkbox [(ngModel)]="todo.state"></mat-checkbox>
+          <input
+            #todoInput
+            style="text-align: center; min-width: 100px;"
+            type="text"
+            matInput
+            [placeholder]="todo.name"
+            (keyup.enter)="todo.name = todoInput.value"
+            [readonly]="todo.readonlyFlag"
+            (dblclick)="todo.readonlyFlag=!todo.readonlyFlag"
+          >
           <button mat-fab aria-label="Example icon button with a delete icon"
                   (click)="listTodos.todos.splice(listTodos.todos.indexOf(todo, 0), 1);
                   listTodos.count = listTodos.count - 1"
