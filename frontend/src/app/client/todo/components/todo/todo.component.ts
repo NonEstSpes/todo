@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {ListTodos} from "../../class/list-todos";
+import {ListTodoService} from "../../services/list-todo.service";
+
 
 @Component({
   selector: 'app-todo',
@@ -8,10 +9,13 @@ import {ListTodos} from "../../class/list-todos";
   styleUrl: './todo.component.scss'
 })
 export class TodoComponent {
-  flag: boolean = true
   typeFilter: string = "All"
   name: string = ""
-  listTodos: ListTodos = new ListTodos()
+
+  constructor(
+    public listTodos: ListTodoService
+  ) {
+  }
 
   onEnter(): void {
     if (this.name == "") {
