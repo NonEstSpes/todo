@@ -1,4 +1,4 @@
-export interface ITodo {
+export interface Todo {
   state: boolean
   name: string
   readonlyFlag: boolean

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ListTodoService} from "../../services/list-todo.service";
-import {ITodo} from "../../interfaces/todo.interface";
+import {Todo} from "../../interfaces/todo.interface";
 
 
 @Component({
@@ -26,7 +26,7 @@ export class TodoComponent {
     this.name = ""
   }
 
-  renameTodo(newName: string, todo: ITodo): void {
+  renameTodo(newName: string, todo: Todo): void {
     if (newName == "") {
       return
     }
