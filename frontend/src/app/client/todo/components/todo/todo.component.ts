@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ListTodoService} from "../../services/list-todo.service";
+import {ITodo} from "../../interfaces/todo.interface";
 
 
 @Component({
@@ -23,5 +24,13 @@ export class TodoComponent {
     }
     this.listTodos.addTodo(this.name)
     this.name = ""
+  }
+
+  renameTodo(newName: string, todo: ITodo): void {
+    if (newName == "") {
+      return
+    }
+    todo.name = newName
+    todo.readonlyFlag = true
   }
 }
