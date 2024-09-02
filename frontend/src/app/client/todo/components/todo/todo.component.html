@@ -11,9 +11,9 @@
     >
   </mat-form-field>
 
-  <div *ngIf="listTodos.count > 0">
+  <div *ngIf="listTodos.Count > 0">
 
-    <mat-hint align="end">{{listTodos.count}} items left</mat-hint>
+    <mat-hint align="end">{{listTodos.Count}} items left</mat-hint>
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" value="All"
                              [(ngModel)]="typeFilter">
       <mat-button-toggle value="All">All</mat-button-toggle>
@@ -26,7 +26,7 @@
     <button mat-button (click)="listTodos.clearCompleted()">Clear Completed</button>
 
     <div class="position__list-container">
-      <div *ngFor="let todo of listTodos.todos">
+      <div *ngFor="let todo of ">
         <div *ngIf="(typeFilter == 'Active' && !todo.state) ||
                     (typeFilter == 'Completed' && todo.state) ||
                     typeFilter == 'All'"
