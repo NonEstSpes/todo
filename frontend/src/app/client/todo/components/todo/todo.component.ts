@@ -34,4 +34,6 @@ export class TodoComponent {
     todo.name = newName
     todo.readonlyFlag = true
   }
+
+  protected readonly console = console;
 }

@@ -25,4 +25,9 @@ export class ListTodoService {
   clearCompleted() {
     this.todos$.next(this.todos$.getValue().filter( (todo: Todo) => !todo.state))
   }
+
+  deleteElement(index: number) {
+    this.todos$.getValue().splice(index, 1)
+    this.todos$.next(this.todos$.getValue())
+  }
 }

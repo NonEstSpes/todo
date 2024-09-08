@@ -43,11 +43,11 @@
             [readonly]="todo.readonlyFlag"
             (dblclick)="todo.readonlyFlag=!todo.readonlyFlag"
           >
-          <!--<button mat-fab aria-label="Example icon button with a delete icon"
-                  (click)="listTodos.todos.splice(listTodos.todos.indexOf(todo, 0), 1)"
+          <button mat-fab aria-label="Example icon button with a delete icon"
+                  (click)="listTodos.deleteElement(listTodos.todos$.getValue().indexOf(todo))"
           >
             <mat-icon>delete</mat-icon>
-          </button>-->
+          </button>
         </div>
       </div>
     </div>
