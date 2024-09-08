@@ -9,10 +9,10 @@ import {Todo} from "../../interfaces/todo.interface";
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.scss'
 })
-export class TodoComponent implements OnInit{
+export class TodoComponent {
   typeFilter: string = "All"
   name: string = ""
-  list: Todo[] = []
+  flagSwitching: boolean = true
 
   constructor(
     public listTodos: ListTodoService
@@ -23,7 +23,7 @@ export class TodoComponent implements OnInit{
     if (this.name == "") {
       return
     }
-    this.listTodos.Todos$.next(this.name)
+    this.listTodos.todos = this.name
     this.name = ""
   }
 
@@ -34,11 +34,4 @@ export class TodoComponent implements OnInit{
     todo.name = newName
     todo.readonlyFlag = true
   }
-
-  ngOnInit() {
-    this.listTodos.Todos$.subscribe(value => {
-      this.list = value
-    })
-  }
-
 }

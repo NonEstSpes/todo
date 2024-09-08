@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
 import {Todo} from "../interfaces/todo.interface";
-import {observable, Observable, of} from "rxjs";
+import {BehaviorSubject, filter, from, map, observable, Observable, of, switchMap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListTodoService {
 
-  private todos: Todo[] = []
+  readonly todos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([])
 
-  public get Todos$(): Observable<Todo[]> {
-    return of(this.todos)
+  public set todos(name: string) {
+    this.todos$.next([...this.todos$.getValue(), {name: name, state: false, readonlyFlag: true}])
   }
 
-  addTodo(name: string): void {
-    this.todos.push({name: name, state: false, readonlyFlag: true})
+  allSwitch(flagSwitching: boolean) {
+    let allCompletedTodos: Todo[] = []
+    for (let item of this.todos$.getValue()) {
+      item.state = flagSwitching
+      allCompletedTodos.push(item)
+    }
+    this.todos$.next(allCompletedTodos)
   }
 
-  allCompleted(): void {
-    this.todos.forEach((todo: Todo) => todo.state = !todo.state)
-  }
-
-  clearCompleted(): void {
-    this.todos = Object.assign([], this.todos.filter( (todo: Todo) => !todo.state))
+  clearCompleted() {
+    this.todos$.next(this.todos$.getValue().filter( (todo: Todo) => !todo.state))
   }
 }
