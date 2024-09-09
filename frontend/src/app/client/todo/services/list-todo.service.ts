@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Todo} from "../interfaces/todo.interface";
-import {BehaviorSubject, filter, from, map, observable, Observable, of, switchMap} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ListTodoService {
   readonly todos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([])
 
   public addTodo(name: string) {
-    this.todos$.next([...this.todos$.getValue(), {name: name, state: false, readonlyFlag: true}])
+    this.todos$.next([...this.todos$.getValue(), {name: name, state: false, readonlyFlag: true, id: Date.now()}])
   }
 
   allSwitch(flagSwitching: boolean) {
