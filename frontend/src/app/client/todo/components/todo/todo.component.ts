@@ -23,7 +23,7 @@ export class TodoComponent {
     if (this.name == "") {
       return
     }
-    this.listTodos.todos = this.name
+    this.listTodos.addTodo(this.name)
     this.name = ""
   }
 
@@ -36,4 +36,5 @@ export class TodoComponent {
   }
 
   protected readonly console = console;
+  protected readonly length = length;
 }
