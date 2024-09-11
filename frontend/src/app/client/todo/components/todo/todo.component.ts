@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ListTodoService} from "../../services/list-todo.service";
 import {Todo} from "../../interfaces/todo.interface";
 
@@ -32,9 +32,7 @@ export class TodoComponent {
       return
     }
     todo.name = newName
+    this.listTodos.renameTodo(this.listTodos.todos$.getValue())
     todo.readonlyFlag = true
   }
-
-  protected readonly console = console;
-  protected readonly length = length;
 }

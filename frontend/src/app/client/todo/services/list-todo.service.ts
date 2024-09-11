@@ -30,4 +30,9 @@ export class ListTodoService {
     this.todos$.getValue().splice(index, 1)
     this.todos$.next(this.todos$.getValue())
   }
+
+  renameTodo(newTodos: Todo[]) {
+    this.todos$.next(newTodos)
+    console.log(this.todos$)
+  }
 }
