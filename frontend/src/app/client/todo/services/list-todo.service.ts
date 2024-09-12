@@ -1,25 +1,41 @@
 import { Injectable } from '@angular/core';
 import {Todo} from "../interfaces/todo.interface";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListTodoService {
 
-  count: number = 0
-  todos: Todo[] = []
+  readonly todos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([])
 
-  addTodo(name: string): void {
-    this.todos.push({name: name, state: false, readonlyFlag: true})
-    this.count++
+  public addTodo(name: string) {
+    if (name == "") return
+    this.todos$.next([...this.todos$.getValue(), {name: name, state: false, readonlyFlag: true, id: Date.now()}])
   }
 
-  allCompleted(): void {
-    this.todos.forEach((todo: Todo) => todo.state = !todo.state)
+  allSwitch(flagSwitching: boolean) {
+    let allCompletedTodos: Todo[] = []
+    for (let item of this.todos$.getValue()) {
+      item.state = flagSwitching
+      allCompletedTodos.push(item)
+    }
+    this.todos$.next(allCompletedTodos)
   }
 
-  clearCompleted(): void {
-    this.todos = Object.assign([], this.todos.filter( (todo: Todo) => !todo.state))
-    this.count = this.todos.length
+  clearCompleted() {
+    this.todos$.next(this.todos$.getValue().filter( (todo: Todo) => !todo.state))
+  }
+
+  deleteElement(index: number) {
+    this.todos$.getValue().splice(index, 1)
+  }
+
+  renameTodo(newName: string, id: number) {
+    if (newName == "") return
+    let todoRenaming = this.todos$.getValue()
+      .find((value: Todo) => value.id == id)
+    if (todoRenaming === undefined) return
+    todoRenaming.name = newName
   }
 }

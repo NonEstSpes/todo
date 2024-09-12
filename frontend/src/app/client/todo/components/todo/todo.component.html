@@ -7,13 +7,13 @@
       matInput
       placeholder="Placeholder"
       [(ngModel)]="name"
-      (keyup.enter)="onEnter()"
+      (keyup.enter)="listTodos.addTodo(name)"
     >
   </mat-form-field>
 
-  <div *ngIf="listTodos.count > 0">
+  <div *ngIf="listTodos.todos$ | async as todos">
 
-    <mat-hint align="end">{{listTodos.count}} items left</mat-hint>
+    <mat-hint align="end">{{todos.length}} items left</mat-hint>
     <mat-button-toggle-group appearance="legacy" name="fontStyle" aria-label="Font Style" value="All"
                              [(ngModel)]="typeFilter">
       <mat-button-toggle value="All">All</mat-button-toggle>
@@ -21,12 +21,12 @@
       <mat-button-toggle value="Completed">Completed</mat-button-toggle>
     </mat-button-toggle-group>
 
-    <button mat-button (click)="listTodos.allCompleted()">All Completed</button>
+    <button mat-button (click)="listTodos.allSwitch(flagSwitching); flagSwitching =!flagSwitching">All Completed</button>
 
     <button mat-button (click)="listTodos.clearCompleted()">Clear Completed</button>
 
     <div class="position__list-container">
-      <div *ngFor="let todo of listTodos.todos">
+      <div *ngFor="let todo of todos">
         <div *ngIf="(typeFilter == 'Active' && !todo.state) ||
                     (typeFilter == 'Completed' && todo.state) ||
                     typeFilter == 'All'"
@@ -39,13 +39,12 @@
             type="text"
             matInput
             [placeholder]="todo.name"
-            (keyup.enter)="renameTodo(todoInput.value, todo)"
+            (keyup.enter)="listTodos.renameTodo(todoInput.value, todo.id)"
             [readonly]="todo.readonlyFlag"
             (dblclick)="todo.readonlyFlag=!todo.readonlyFlag"
           >
           <button mat-fab aria-label="Example icon button with a delete icon"
-                  (click)="listTodos.todos.splice(listTodos.todos.indexOf(todo, 0), 1);
-                  listTodos.count = listTodos.count - 1"
+                  (click)="listTodos.deleteElement(todos.indexOf(todo))"
           >
             <mat-icon>delete</mat-icon>
           </button>
