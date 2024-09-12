@@ -7,7 +7,7 @@
       matInput
       placeholder="Placeholder"
       [(ngModel)]="name"
-      (keyup.enter)="onEnter()"
+      (keyup.enter)="listTodos.addTodo(name)"
     >
   </mat-form-field>
 

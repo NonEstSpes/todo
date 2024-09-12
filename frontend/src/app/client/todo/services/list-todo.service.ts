@@ -10,6 +10,7 @@ export class ListTodoService {
   readonly todos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>([])
 
   public addTodo(name: string) {
+    if (name == "") return
     this.todos$.next([...this.todos$.getValue(), {name: name, state: false, readonlyFlag: true, id: Date.now()}])
   }
 

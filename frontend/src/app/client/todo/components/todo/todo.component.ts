@@ -18,12 +18,4 @@ export class TodoComponent {
     public listTodos: ListTodoService
   ) {
   }
-
-  onEnter(): void {
-    if (this.name == "") {
-      return
-    }
-    this.listTodos.addTodo(this.name)
-    this.name = ""
-  }
 }
