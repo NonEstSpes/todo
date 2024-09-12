@@ -39,7 +39,7 @@
             type="text"
             matInput
             [placeholder]="todo.name"
-            (keyup.enter)="renameTodo(todoInput.value, todo)"
+            (keyup.enter)="listTodos.renameTodo(todoInput.value, todo.id)"
             [readonly]="todo.readonlyFlag"
             (dblclick)="todo.readonlyFlag=!todo.readonlyFlag"
           >

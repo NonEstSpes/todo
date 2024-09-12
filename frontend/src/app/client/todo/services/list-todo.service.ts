@@ -28,11 +28,13 @@ export class ListTodoService {
 
   deleteElement(index: number) {
     this.todos$.getValue().splice(index, 1)
-    this.todos$.next(this.todos$.getValue())
   }
 
-  renameTodo(newTodos: Todo[]) {
-    this.todos$.next(newTodos)
-    console.log(this.todos$)
+  renameTodo(newName: string, id: number) {
+    if (newName == "") return
+    let todoRenaming = this.todos$.getValue()
+      .find((value: Todo) => value.id == id)
+    if (todoRenaming === undefined) return
+    todoRenaming.name = newName
   }
 }

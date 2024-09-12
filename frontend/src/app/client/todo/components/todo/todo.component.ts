@@ -26,13 +26,4 @@ export class TodoComponent {
     this.listTodos.addTodo(this.name)
     this.name = ""
   }
-
-  renameTodo(newName: string, todo: Todo): void {
-    if (newName == "") {
-      return
-    }
-    todo.name = newName
-    this.listTodos.renameTodo(this.listTodos.todos$.getValue())
-    todo.readonlyFlag = true
-  }
 }
